@@ -1,4 +1,7 @@
 part of 'cart_bloc.dart';
 
-@immutable
-sealed class CartEvent {}
+abstract class CartEvent {}
+
+class CartItemRemoval extends CartEvent {}
+
+class CartInitialEvent extends CartEvent {}
