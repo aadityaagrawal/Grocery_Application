@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:groceryapp/data/cart_item.dart';
 import 'package:groceryapp/features/cart/bloc/cart_bloc.dart';
 import 'package:groceryapp/features/cart/ui/card_product_tile.dart';
 
@@ -51,7 +50,7 @@ class _CartPageState extends State<CartPage> {
                   }),
             );
 
-          default: return Scaffold(appBar: AppBar(), body: SizedBox(),);
+          default: return Scaffold(appBar: AppBar(), body: const SizedBox(),);
         }
       },
     );

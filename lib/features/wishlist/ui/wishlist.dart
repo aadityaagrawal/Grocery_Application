@@ -12,6 +12,12 @@ class WishlistPage extends StatefulWidget {
 
 class _WishlistPageState extends State<WishlistPage> {
   final wishlistBloc = WishlistBloc();
+
+  @override
+  void initState() {
+    wishlistBloc.add(WishlistInitialEvent());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WishlistBloc, WishlistState>(
@@ -29,7 +35,7 @@ class _WishlistPageState extends State<WishlistPage> {
           final successState = state as WishlistSuccessState;
             return Scaffold(
               appBar: AppBar(
-                title: const Text("Grocery App Cart"),
+                title: const Text("Grocery App Wishilist"),
                 centerTitle: true,
                 
               ),
