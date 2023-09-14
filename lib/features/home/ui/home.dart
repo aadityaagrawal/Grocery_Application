@@ -13,9 +13,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  final HomeBloc homeBloc = HomeBloc();
+
+  @override
+  void initState() {
+    homeBloc.add(HomeInitialEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final HomeBloc homeBloc = HomeBloc();
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
       listenWhen: (previous, current) => current is HomeActionState,
@@ -33,7 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
+          
+          switch(state.runtimeType)
+          {
+            case HomeLoadingState:
+
+            return const Scaffold(body: Center(child: CircularProgressIndicator(),),);
+
+            case HomeSuccessState:
+            return Scaffold(
           appBar: AppBar(
               title: const Text("Grocery App"),
               centerTitle: true,
@@ -49,6 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: const Icon(Icons.shopping_cart_outlined))
               ]),
         );
+    
+            case HomeErrorState:
+            return const Scaffold(body: Center(child: Text("Error while loading"),),);
+
+            default : 
+            return const Scaffold(body: SizedBox(),);
+          }
+
+        
+
+        
       },
     );
   }
